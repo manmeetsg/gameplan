@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 export const ActionTypes = {
   CREATE_GROUP: 'CREATE_GROUP',
   FETCH_GROUPS: 'FETCH_GROUPS',
+  FETCH_GROUP: 'FETCH_GROUP',
 
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
@@ -70,6 +71,19 @@ export function fetchGroups() {
     axios.get(`${ROOT_URL}/groups`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({
         type: 'FETCH_GROUPS',
+        payload: response.data,
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
+export function fetchGroup(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/groups/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'FETCH_GROUP',
         payload: response.data,
       });
     }).catch(error => {

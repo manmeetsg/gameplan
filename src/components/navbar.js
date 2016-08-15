@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 // example class based component (smart component)
-class Welcome extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
 
@@ -41,10 +41,10 @@ class Welcome extends Component {
     return (
       <div className="nav">
         <div className="item">
-          <Link to="/">Alex's Blog</Link>
+          <Link to="/">GamePlan Home</Link>
         </div>
-        <div className="item newPost">
-          <Link to="/posts/new">New Post</Link>
+        <div className="item">
+          <Link to="/groups">View Groups</Link>
         </div>
 
         {this.auth()}
@@ -59,4 +59,4 @@ const mapDispatchToProps = (state) => (
   }
 );
 
-export default connect(mapDispatchToProps, actions)(Welcome);
+export default connect(mapDispatchToProps, actions)(NavBar);

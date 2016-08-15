@@ -24,7 +24,6 @@ class Login extends Component {
     } else {
       const ticket = this.props.location.query.ticket;
       if (ticket) {
-        console.log(ticket);
         this.props.loginUser({ ticket });
       } else {
         window.location.replace(`https://login.dartmouth.edu/cas/login?service=${this.loginRedirect}`);
