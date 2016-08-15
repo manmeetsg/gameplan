@@ -4,7 +4,7 @@ import GroupsReducer from './groups-reducer';
 import AuthReducer from './auth-reducer';
 
 const rootReducer = combineReducers({
-  group: GroupsReducer,
+  groups: GroupsReducer,
   auth: AuthReducer,
 });
 
