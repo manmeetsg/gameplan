@@ -33,12 +33,17 @@ export function authError(error) {
 }
 
 // User function
-export function loginUser({ email, password }) {
+export function loginUser({ ticket }) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/login`, { email, password }).then(response => {
-      dispatch({ type: ActionTypes.AUTH_USER });
-      localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
+    axios.post(`${ROOT_URL}/login`, { ticket }).then(response => {
+      if (response.data.status === 'error') {
+        console.log(response.data.message);
+      } else {
+        dispatch({ type: ActionTypes.AUTH_USER });
+        console.log(response);
+        localStorage.setItem('token', response.data.token);
+        browserHistory.push('/');
+      }
     }).catch(error => {
       dispatch(authError(`Sign In Failed: ${error.response.data}`));
     });
@@ -50,7 +55,6 @@ export function loginUser({ email, password }) {
     GROUPS
   ================
 */
-
 export function createGroup(group) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/groups`, group, { headers: { authorization: localStorage.getItem('token') } }).then(response => {

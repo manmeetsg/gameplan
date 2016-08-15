@@ -3,13 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import CAS from '../auth/cas';
-const cas = new CAS({
-  base_url: 'https://login.dartmouth.edu/cas',
-  service: 'http://localhost:8080/login',
-  version: 2.0,
-});
-
 // example class based component (smart component)
 class Login extends Component {
   constructor(props) {
@@ -31,16 +24,7 @@ class Login extends Component {
     } else {
       const ticket = this.props.location.query.ticket;
       if (ticket) {
-        console.log(ticket);
-
-        cas.validate(ticket, (err, status, username, extended) => {
-          if (err) console.log(`Validation error: ${err}`);
-
-          console.log('Please');
-
-          console.log(username);
-          console.log(extended);
-        });
+        this.props.loginUser({ ticket });
       } else {
         window.location.replace(`https://login.dartmouth.edu/cas/login?service=${this.loginRedirect}`);
       }
