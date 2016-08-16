@@ -41,7 +41,7 @@ class NavBar extends Component {
     return (
       <div className="nav">
         <div className="item">
-          <Link to="/">GamePlan Home!</Link>
+          <Link to="/">GamePlan Home</Link>
         </div>
         <div className="item">
           <Link to="/groups">View Groups</Link>
