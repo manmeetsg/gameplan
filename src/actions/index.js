@@ -12,7 +12,7 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
 };
 
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
 
 // Helper functions
 // deletes token from localstorage
