@@ -25,7 +25,7 @@ class PostShow extends Component {
 // connects particular parts of redux state to this components props
 const mapStateToProps = (state) => (
   {
-    post: state.posts.currentPost,
+    // post: state.posts.currentPost,
   }
 );
 
