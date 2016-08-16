@@ -1,7 +1,112 @@
 body {
-  font-family: "Roboto", sans-serif;
-  color: rgb(10%, 10%, 10%);
+  font-family: 'Reem Kufi', sans-serif;
+  color: #000000;
   background: darken(white, 10%);
   margin: 50px;
   font-size: 16px;
+}
+
+/* Navbar styling */
+.nav {
+  display:flex;
+  justify-content: space-between;
+
+  .nav-links {
+    font-family: 'Rammetto One', cursive;
+    font-size: 16px;
+    padding: 7px;
+    border-radius: .25rem;
+    color: #000000;
+    border: 0;
+    background-color: #898989;
+  }
+
+  .nav-links:hover {
+    background-color: #6f73b6;
+  }
+
+  #home-top {
+    color: #000000;
+    font-size: 28pt;
+    height: 28pt;
+    margin-left: 45px;
+  }
+
+  #home-bottom {
+    font-family: 'Rammetto One', cursive;
+    color: #000000;
+    font-size: 42pt;
+    height: 42pt;
+  }
+}
+
+/* Groups Page styling */
+.groups {
+  display:flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  .groups-top {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 35px;
+      font-family: 'Rammetto One', cursive;
+    }
+    button {
+      padding: 7px;
+      border-radius: .25rem;
+      box-sizing: border-box;
+      color: #000000;
+      border: 0;
+      background-color: inherit;
+    }
+  }
+
+  ul {
+    list-style: none;
+    border-radius: .25rem;
+    padding: 5px;
+    background-color: #e9e9ea;
+    width: 60%;
+    margin-left: 20%;
+
+    li {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #FFFFFF;
+    border: 0;
+    padding: 10px;
+    border-radius: .15rem;
+
+    a {
+      border-bottom: none;
+      color: #000000;
+    }
+
+    a:hover {
+      border-bottom: none;
+      color: #000000;
+      background-color: #FFFFFF;
+    }
+  }
+
+  li:hover {
+    background-color: #FFFFFF;
+  }
+}
+  ul:nth-child(even) {
+    background-color: #bcbcbc;
+  }
+}
+
+/* Single Group Page styling */
+.group-view {
+  h1 {
+    font-size: 35px;
+    font-family: 'Rammetto One', cursive;
+  }
 }

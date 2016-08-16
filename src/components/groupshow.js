@@ -23,11 +23,15 @@ class GroupShow extends Component {
 
     if (!this.props.group) { // No set group (initially)
       return (
-        <h3>Loading...</h3>
+        <div className="group-view">
+          <h1>Loading...</h1>
+        </div>
       );
     } else {
       return (
-        <h3>{this.props.group.name}</h3>
+        <div className="group-view">
+          <h1>{this.props.group.name}</h1>
+        </div>
       );
     }
   }

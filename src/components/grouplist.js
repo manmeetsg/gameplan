@@ -31,16 +31,21 @@ class GroupList extends Component {
 
     if (this.props.groups.length === 0) {
       return (
-        <div>
-          <h3>Groups</h3>
+        <div className="groups">
+          <div className="groups-top">
+            <h1>Groups</h1>
+            <button onClick={this.addGroup}><i className="fa fa-plus fa-3x"></i></button>
+          </div>
           No groups.
-          <button onClick={this.addGroup}>Add Group</button>
         </div>
       );
     } else {
       return (
-        <div>
-          <h3>Groups</h3>
+        <div className="groups">
+          <div className="groups-top">
+            <h1>Groups</h1>
+            <button onClick={this.addGroup}><i className="fa fa-plus fa-3x"></i></button>
+          </div>
           <ul>
             {this.props.groups.map(group => {
               return (
@@ -52,7 +57,6 @@ class GroupList extends Component {
               );
             })}
           </ul>
-          <button onClick={this.addGroup}>Add Group</button>
         </div>
       );
     }

@@ -22,15 +22,15 @@ class NavBar extends Component {
   auth() {
     if (this.props.authenticated) {
       return (
-        <div className="item">
-          <button onClick={this.onLogOut}>Log Out</button>
+        <div>
+          <button onClick={this.onLogOut} className="nav-links">Log Out</button>
         </div>
       );
     } else {
       return (
         <div>
-          <div className="item">
-            <Link to="/login">Log In</Link>
+          <div>
+            <Link to="/login" className="nav-links">Log In</Link>
           </div>
         </div>
       );
@@ -40,11 +40,11 @@ class NavBar extends Component {
   render() {
     return (
       <div className="nav">
-        <div className="item">
-          <Link to="/">GamePlan Home</Link>
+        <div>
+          <Link to="/groups" className="nav-links">View Groups</Link>
         </div>
         <div className="item">
-          <Link to="/groups">View Groups</Link>
+          <Link to="/" id="home"><div id="home-top">what&#39;s your</div><div id="home-bottom">Game Plan?</div></Link>
         </div>
 
         {this.auth()}
