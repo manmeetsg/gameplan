@@ -2,13 +2,13 @@
   "name": "gameplan-frontend",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "GamePlan is a web application to facilitate group planning and coordination of events. The app strives to encourage users to step outside their comfort zones and do things they normally never take the tim to do! Users can create or be added to groups of other members, and then post event ideas to any groups that they are part of. When a user “likes” a post, they are put in a group chat with all other people who have liked that post, so they can easily communicate about planning this event.",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/eslint **.js",
-    "start": "node_modules/.bin/webpack-dev-server --inline --hot",
+    "test": "eslint **.js",
+    "start": "webpack-dev-server --inline --hot",
     "build": "WEBPACK_ENV=production node_modules/.bin/webpack --optimize-minimize --progress --color",
-    "deploy": "npm run build; surge -p . -d tim-js-starter.surge.sh"
+    "deploy": "npm run build; surge -p . -d gameplan.surge.sh"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "postcss-loader": "^0.9.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "surge": "^0.18.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
