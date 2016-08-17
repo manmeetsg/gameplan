@@ -10,6 +10,7 @@ import GroupShow from './components/groupshow';
 
 import PostList from './components/postlist';
 import PostShow from './components/postshow';
+import PostNew from './components/postnew';
 
 export default(
   <Route path="/" component={App}>
@@ -18,6 +19,7 @@ export default(
     <Route path="groups" component={GroupList} />
     <Route path="groups/:id" component={GroupShow} />
     <Route path="posts" component={PostList} />
+    <Route path="posts/new" component={PostNew} />
     <Route path="posts/:id" component={PostShow} />
   </Route>
 );

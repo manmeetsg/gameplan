@@ -46,6 +46,9 @@ class NavBar extends Component {
         <div className="item">
           <Link to="/" id="home"><div id="home-top">what&#39;s your</div><div id="home-bottom">Game Plan?</div></Link>
         </div>
+        <div>
+          <Link to="/posts/new" id="newpost">New Post</Link>
+        </div>
 
         {this.auth()}
       </div>
