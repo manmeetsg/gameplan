@@ -1,4 +1,5 @@
 import axios from 'axios';
+import http from 'http';
 import { browserHistory } from 'react-router';
 
 // keys for actiontypes
@@ -13,6 +14,7 @@ export const ActionTypes = {
 };
 
 const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
 
 // Helper functions
 // deletes token from localstorage
@@ -22,6 +24,13 @@ export function logoutUser() {
     localStorage.removeItem('token');
     dispatch({ type: ActionTypes.DEAUTH_USER });
     browserHistory.push('/');
+
+    // Try and logout with CAS
+    http.get('http://login.dartmouth.edu/cas/logout', res => {
+      return res;
+    }).on('error', e => {
+      console.log(e);
+    });
   };
 }
 
