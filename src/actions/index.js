@@ -15,6 +15,7 @@ export const ActionTypes = {
   FETCH_POST: 'FETCH_POST',
 
   FETCH_USERS: 'FETCH_USERS',
+  FETCH_ME: 'FETCH_ME',
 };
 
 const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
@@ -178,6 +179,19 @@ export function fetchUsers() {
     axios.get(`${ROOT_URL}/users`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({
         type: 'FETCH_USERS',
+        payload: response.data,
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
+export function getMe() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/users/me`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'FETCH_ME',
         payload: response.data,
       });
     }).catch(error => {
