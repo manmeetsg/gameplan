@@ -1,112 +1,321 @@
+$green: #006841;
+
+html, body {
+  margin: 0px;
+  font-family: sans-serif;
+  background-color: #EEEEEE;
+  min-height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+
+  outline: 0;
+}
+
 body {
-  font-family: 'Reem Kufi', sans-serif;
-  color: #000000;
-  background: darken(white, 10%);
-  margin: 50px;
-  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
-/* Navbar styling */
-.nav {
-  display:flex;
-  justify-content: space-between;
-
-  .nav-links {
-    font-family: 'Rammetto One', cursive;
-    font-size: 16px;
-    padding: 7px;
-    border-radius: .25rem;
-    color: #000000;
-    border: 0;
-    background-color: #898989;
-  }
-
-  .nav-links:hover {
-    background-color: #6f73b6;
-  }
-
-  #home-top {
-    color: #000000;
-    font-size: 28pt;
-    height: 28pt;
-    margin-left: 45px;
-  }
-
-  #home-bottom {
-    font-family: 'Rammetto One', cursive;
-    color: #000000;
-    font-size: 42pt;
-    height: 42pt;
-  }
+.center {
+  margin: 0 auto;
+  text-align: center;
 }
 
-/* Groups Page styling */
-.groups {
-  display:flex;
-  justify-content: space-between;
-  flex-direction: column;
+nav {
+  position: relative;
 
-  .groups-top {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
+  background-color: $green;
 
-    h1 {
-      font-size: 35px;
-      font-family: 'Rammetto One', cursive;
+  .left, .right {
+    position: absolute;
+    top: 0px;
+
+    > div {
+      display: inline-block;
     }
+  }
+
+  .left {
+    left: 0px;
+  }
+
+  .right {
+    right: 0px;
+  }
+
+  a, button {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+  }
+
+  .item {
+    text-align: center;
+    vertical-align: top;
+    transition: background-color 0.2s ease;
+
+    height: 62px;
+
     button {
-      padding: 7px;
-      border-radius: .25rem;
-      box-sizing: border-box;
-      color: #000000;
-      border: 0;
-      background-color: inherit;
+      border: 0px;
+      background-color: transparent;
+      font-size: 1em;
+      margin: 0px;
+
+      cursor: pointer;
     }
+
+    a {
+      display: block;
+    }
+
+    i.fa {
+      display: block;
+      font-size: 1.5em;
+    }
+
+    &:not(.title):hover {
+      background-color: lighten($green, 5%);
+    }
+  }
+
+  .title {
+    font-size: 2em;
+  }
+}
+
+.newgroup {
+  max-width: 50em;
+  margin: 0 auto;
+
+  label {
+    display: block;
+    font-size: 1.2em;
+
+    margin-bottom: 3px;
+  }
+
+  form > input, form > textarea {
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 1.1em;
+    padding: 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+  }
+
+  .Select {
+    margin-bottom: 15px;
+
+    .Select-control {
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      border-radius: 3px;
+    }
+  }
+
+  button, a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    padding: 15px;
+    border: 0px;
+    border-radius: 2px;
+    margin: 2px;
+
+    cursor: pointer;
+
+    font-size: 1.1em;
+
+    display: inline-block;
+    width: 140px;
+  }
+
+  button[type="submit"] {
+    background-color: #4E9A26;
+  }
+
+  .cancel {
+    background-color: #AC1212;
+  }
+}
+
+.groups {
+  width: 100%;
+  max-width: 50em;
+  margin: 0 auto;
+
+  ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      padding: 20px 20px 24px 20px;
+      display: block;
+      border-radius: 2px;
+      background-color: white;
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.8);
+
+      &:hover {
+        padding: 20px;
+        border-bottom: 4px solid $green;
+      }
+
+      .name {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .members {
+        font-size: 0.8em;
+        margin: 3px 0;
+      }
+    }
+  }
+}
+
+.viewgroup {
+  max-width: 50em;
+  margin: 0 auto;
+
+  h1 {
+    margin-bottom: 0px;
+  }
+
+  h4 {
+    margin: 0px;
+    font-weight: 400;
   }
 
   ul {
-    list-style: none;
-    border-radius: .25rem;
-    padding: 5px;
-    background-color: #e9e9ea;
-    width: 60%;
-    margin-left: 20%;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+  }
+}
 
-    li {
-    display: flex;
-    justify-content: space-between;
-    text-decoration: none;
-    color: #FFFFFF;
-    border: 0;
+.newpost {
+  max-width: 50em;
+  margin: 0 auto;
+
+  label {
+    display: block;
+    font-size: 1.2em;
+
+    margin-bottom: 3px;
+  }
+
+  form > input, form > textarea {
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 1.1em;
     padding: 10px;
-    border-radius: .15rem;
 
-    a {
-      border-bottom: none;
-      color: #000000;
-    }
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+  }
 
-    a:hover {
-      border-bottom: none;
-      color: #000000;
-      background-color: #FFFFFF;
+  .Select {
+    margin-bottom: 15px;
+
+    .Select-control {
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      border-radius: 3px;
     }
   }
 
-  li:hover {
-    background-color: #FFFFFF;
+  button, a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    padding: 15px;
+    border: 0px;
+    border-radius: 2px;
+    margin: 2px;
+
+    cursor: pointer;
+
+    font-size: 1.1em;
+
+    display: inline-block;
+    width: 140px;
+  }
+
+  button[type="submit"] {
+    background-color: #4E9A26;
+  }
+
+  .cancel {
+    background-color: #AC1212;
   }
 }
-  ul:nth-child(even) {
-    background-color: #bcbcbc;
+
+.posts {
+  width: 100%;
+  max-width: 50em;
+  margin: 0 auto;
+
+  ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
   }
 }
 
-/* Single Group Page styling */
-.group-view {
-  h1 {
-    font-size: 35px;
-    font-family: 'Rammetto One', cursive;
+.post {
+  display: block;
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+
+  background-color: white;
+  padding: 20px;
+
+  border-radius: 2px;
+  margin-bottom: 10px;
+
+  .title {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .date {
+    font-size: 0.8em;
+  }
+
+  .responders {
+    margin-bottom: 5px;
+  }
+
+  li {
+    position: relative;
+  }
+
+  .groupNames {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+  }
+}
+
+.home {
+  display: flex;
+  padding: 0px 20px;
+
+  .posts {
+    flex: 3;
+    margin-right: 20px;
+  }
+
+  .groups {
+    flex: 1;
   }
 }

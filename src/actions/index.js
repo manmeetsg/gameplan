@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 
 // keys for actiontypes
 export const ActionTypes = {
-  CREATE_GROUP: 'CREATE_GROUP',
   FETCH_GROUPS: 'FETCH_GROUPS',
   FETCH_GROUP: 'FETCH_GROUP',
 
@@ -12,14 +11,14 @@ export const ActionTypes = {
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
 
-  CREATE_POST: 'CREATE_POST',
   FETCH_POSTS: 'FETCH_POSTS',
   FETCH_POST: 'FETCH_POST',
+
+  FETCH_USERS: 'FETCH_USERS',
 };
 
 const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
 // const ROOT_URL = 'http://localhost:9090/api';
-
 
 // Helper functions
 // deletes token from localstorage
@@ -32,9 +31,9 @@ export function logoutUser() {
 
     // Try and logout with CAS
     http.get('http://login.dartmouth.edu/cas/logout', res => {
-      return res;
+      // Success
     }).on('error', e => {
-      console.log(e);
+      // Error
     });
   };
 }
@@ -69,11 +68,20 @@ export function loginUser({ ticket }) {
 export function createGroup(group) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/groups`, group, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      browserHistory.push('/');
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
+export function updateGroup(id, group) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/groups/${id}`, group, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({
-        type: 'CREATE_GROUP',
+        type: 'FETCH_GROUP',
         payload: response.data,
       });
-      // browserHistory.push('/');
     }).catch(error => {
       console.log(error);
     });
@@ -114,10 +122,6 @@ export function fetchGroup(id) {
 export function createPost(post) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-      dispatch({
-        type: 'CREATE_POST',
-        payload: response.data,
-      });
       browserHistory.push('/');
     }).catch(error => {
       console.log(error);
@@ -138,11 +142,42 @@ export function fetchPosts() {
   };
 }
 
+export function fetchPostsForGroup(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts/group/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'FETCH_POSTS',
+        payload: response.data,
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
 export function fetchPost(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({
         type: 'FETCH_POST',
+        payload: response.data,
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
+/*
+  ================
+    USERS
+  ================
+*/
+export function fetchUsers() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/users`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'FETCH_USERS',
         payload: response.data,
       });
     }).catch(error => {
