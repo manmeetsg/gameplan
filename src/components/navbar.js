@@ -87,7 +87,7 @@ if (this.props.authenticated) {
           </div>
         </div>
         <div className="item title">
-          <Link to="/">Game Plan</Link>
+          <Link to="/"><img src="../../readmepictures/GamePlanLogo.png" alt="Mountain_view" height="40px" /></Link>
         </div>
         {this.auth()}
       </nav>
