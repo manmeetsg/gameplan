@@ -10,18 +10,10 @@ class GroupList extends Component {
 
     // init component state here
     this.state = {};
-
-    this.addGroup = this.addGroup.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchGroups();
-  }
-
-  addGroup() {
-    this.props.createGroup({
-      name: 'Test',
-    });
   }
 
   render() {
@@ -32,26 +24,28 @@ class GroupList extends Component {
     if (this.props.groups.length === 0) {
       return (
         <div className="groups">
-          <div className="groups-top">
-            <h1>Groups</h1>
-            <button onClick={this.addGroup}><i className="fa fa-plus fa-3x"></i></button>
-          </div>
-          No groups.
+          <h1>Groups</h1>
+          Loading...
         </div>
       );
     } else {
       return (
         <div className="groups">
-          <div className="groups-top">
-            <h1>Groups</h1>
-            <button onClick={this.addGroup}><i className="fa fa-plus fa-3x"></i></button>
-          </div>
+          <h1>Groups</h1>
           <ul>
             {this.props.groups.map(group => {
               return (
                 <li key={group._id}>
                   <Link to={`/groups/${group._id}`}>
-                    {group.name}
+                    <div className="name">
+                      {group.name}
+                    </div>
+                    <div className="members">
+                      {group.members.length} member(s)
+                    </div>
+                    <div className="description">
+                      {group.description}
+                    </div>
                   </Link>
                 </li>
               );
