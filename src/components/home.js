@@ -21,8 +21,8 @@ class Home extends Component {
   render() {
     if (!this.props.authenticated) {
       return (
-        <div>
-          Login using your Dartmouth account to get started!
+        <div className="content">
+          Log in using your Dartmouth account to get started!
         </div>
       );
     } else {

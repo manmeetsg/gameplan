@@ -24,16 +24,28 @@ class NavBar extends Component {
       return (
         <div className="right">
           <div className="item">
-            <button onClick={this.onLogOut}>
-              <i className="fa fa-sign-out" aria-hidden="true"></i>
-              Log Out
-            </button>
+            <Link to="/posts/new">
+              <i className="fa fa-book" aria-hidden="true"></i>
+              <p className="text">New Post</p>
+            </Link>
+          </div>
+          <div className="item">
+            <Link to="/groups/new">
+              <i className="fa fa-user-plus" aria-hidden="true"></i>
+              <p className="text">New Group</p>
+            </Link>
           </div>
           <div className="item">
             <Link to="/profile">
               <i className="fa fa-user" aria-hidden="true"></i>
-              Profile
+              <p className="text">Profile</p>
             </Link>
+          </div>
+          <div className="item">
+            <button onClick={this.onLogOut}>
+              <i className="fa fa-sign-out" aria-hidden="true"></i>
+              <p className="text">Log Out</p>
+            </button>
           </div>
         </div>
       );
@@ -72,20 +84,6 @@ if (this.props.authenticated) {
   render() {
     return (
       <nav>
-        <div className="left">
-          <div className="item">
-            <Link to="/posts/new">
-              <i className="fa fa-book" aria-hidden="true"></i>
-              New Post
-            </Link>
-          </div>
-          <div className="item">
-            <Link to="/groups/new">
-              <i className="fa fa-user-plus" aria-hidden="true"></i>
-              New Group
-            </Link>
-          </div>
-        </div>
         <div className="item title">
           <Link to="/"><img src="../../readmepictures/GamePlanLogo.png" alt="Mountain_view" height="40px" /></Link>
         </div>

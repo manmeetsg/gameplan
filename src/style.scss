@@ -13,10 +13,6 @@ html, body {
   outline: 0;
 }
 
-body {
-  color: rgba(0, 0, 0, 0.8);
-}
-
 .center {
   margin: 0 auto;
   text-align: center;
@@ -24,8 +20,7 @@ body {
 
 nav {
   position: relative;
-
-  background-color: $green;
+  // background-color: rgba(0,0,0,.8);
 
   .left, .right {
     position: absolute;
@@ -51,11 +46,11 @@ nav {
   }
 
   .item {
-    text-align: center;
     vertical-align: top;
     transition: background-color 0.2s ease;
 
     height: 62px;
+    opacity: 0.8;
 
     button {
       border: 0px;
@@ -75,13 +70,23 @@ nav {
       font-size: 1.5em;
     }
 
-    &:not(.title):hover {
-      background-color: lighten($green, 5%);
+    &:not(.title) {
+      text-align: center;
+      margin-top: 7px;
     }
+  }
+
+  .item:hover {
+    opacity: 1;
   }
 
   .title {
     font-size: 2em;
+    opacity: 0.8;
+  }
+
+  .title:hover {
+    opacity: 1;
   }
 }
 
@@ -160,13 +165,14 @@ nav {
       padding: 20px 20px 24px 20px;
       display: block;
       border-radius: 2px;
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.5);
       text-decoration: none;
       color: rgba(0, 0, 0, 0.8);
 
       &:hover {
         padding: 20px;
-        border-bottom: 4px solid $green;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-bottom: 4px solid black;
       }
 
       .name {
@@ -182,13 +188,14 @@ nav {
   }
 }
 
+h1 {
+  margin-bottom: 5px;
+}
+
 .viewgroup {
   max-width: 50em;
   margin: 0 auto;
 
-  h1 {
-    margin-bottom: 0px;
-  }
 
   h4 {
     margin: 0px;
@@ -269,6 +276,7 @@ nav {
     margin: 0px;
     padding: 0px;
   }
+
 }
 
 .post {
@@ -276,8 +284,9 @@ nav {
   color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
 
-  background-color: white;
-  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+
+  padding: 20px 20px 24px 20px;
 
   border-radius: 2px;
   margin-bottom: 10px;
@@ -318,4 +327,48 @@ nav {
   .groups {
     flex: 1;
   }
+}
+
+.cover {
+  height: auto;
+  margin:0;
+}
+
+.post:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 4px solid black;
+  border-radius: 2px;
+  padding: 20px;
+}
+
+#main
+{
+    position:fixed;
+    background: url(http://hdwallpaperbackgrounds.net/wp-content/uploads/2016/07/Desktop-backgrounds-12.jpg);
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+}
+
+.item .text {
+  position:relative;
+  text-align: center;
+  color:white;
+  margin: 0;
+  display: none;
+  // visibility: hidden;
+  font-size: 0.65em;
+}
+
+.item:hover .text {
+  display: block;
+  // visibility: visible;
+  opacity: 1;
+}
+
+.content {
+  text-align: center;
+  padding-top: 100px;
+  color: black;
 }
