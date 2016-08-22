@@ -31,7 +31,15 @@ class GroupList extends Component {
     } else {
       return (
         <div className="groups">
-          <h1>Groups</h1>
+          <div className="titlebar">
+            <h1>Groups</h1>
+            <div className="item">
+              <Link to="/groups/new" id="groupplus">
+                <i className="fa fa-user-plus" aria-hidden="true"></i>
+                <p className="text">New</p>
+              </Link>
+            </div>
+          </div>
           <ul>
             {this.props.groups.map(group => {
               return (

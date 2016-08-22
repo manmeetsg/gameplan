@@ -18,8 +18,8 @@ export const ActionTypes = {
   FETCH_ME: 'FETCH_ME',
 };
 
-const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // Helper functions
 // deletes token from localstorage
