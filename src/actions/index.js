@@ -169,6 +169,32 @@ export function fetchPost(id) {
   };
 }
 
+export function updatePost(id, post) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/posts/${id}`, post, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'FETCH_POST',
+        payload: response.data,
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
+export function postComment(id, message) {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/posts/${id}`, message, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'FETCH_POST',
+        payload: response.data,
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
 /*
   ================
     USERS
