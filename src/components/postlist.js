@@ -27,7 +27,15 @@ class PostList extends Component {
     } else {
       return (
         <div className="posts">
-          <h1>Posts</h1>
+          <div className="titlebar">
+            <h1>Posts</h1>
+            <div className="item">
+              <Link to="/posts/new" id="plus">
+                <i className="fa fa-plus" aria-hidden="true"></i>
+                <p className="text">New</p>
+              </Link>
+            </div>
+          </div>
           <ul>
             {this.props.posts.map((post) => {
               const groups = post.groups.map(group => {
