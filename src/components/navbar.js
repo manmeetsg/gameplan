@@ -25,7 +25,7 @@ class NavBar extends Component {
         <div className="right">
           <div className="item">
             <Link to="/posts/new">
-              <i className="fa fa-book" aria-hidden="true"></i>
+              <i className="fa fa-plus" aria-hidden="true"></i>
               <p className="text">New Post</p>
             </Link>
           </div>

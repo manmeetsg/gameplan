@@ -113,16 +113,19 @@ class PostShow extends Component {
   chat() {
     if (this.props.post.responders.map(responder => { return responder._id; }).indexOf(this.props.me._id) > -1) {
       return (
-        <div className="chat">
-          {this.props.post.chat.map(message => {
-            console.log(message);
-            return (
-              <div className="message" key={message._id}>
-                <span className="poster">{message.poster.name}</span>
-                {message.text}
-              </div>
-            );
-          })}
+        <div>
+          <h2>Chat:</h2>
+          <div className="chat" id="chat">
+            {this.props.post.chat.map(message => {
+              console.log(message);
+              return (
+                <div className="message" key={message._id}>
+                  <span className="poster">{message.poster.name}</span>
+                  {message.text}
+                </div>
+              );
+            })}
+          </div>
           <form onSubmit={this.postComment}>
             <input type="text" placeholder="Type anything..." onChange={this.onCommentChange} value={this.state.comment} />
             <button type="submit">Post</button>
@@ -165,21 +168,27 @@ class PostShow extends Component {
     } else {
       return (
         <div className="viewpost">
-          <h1>{this.props.post.title}</h1>
-          <button onClick={() => {
-            this.setState({
-              isEditing: true,
-              title: this.props.post.title,
-              description: this.props.post.description,
-            });
-          }}>Edit Post</button>
-          {this.join()}
-          <h2>{this.props.post.author.name}</h2>
-          <h4>{this.props.post.responders.map(responder => {
+          <div className="postheader">
+            <h1>{this.props.post.title}</h1>
+            <div>
+              <button onClick={() => {
+                this.setState({
+                  isEditing: true,
+                  title: this.props.post.title,
+                  description: this.props.post.description,
+                });
+              }}>Edit Post</button>
+            {this.join()}
+            </div>
+          </div>
+          <h3>Author: {this.props.post.author.name}</h3>
+          <h4>Members: {this.props.post.responders.map(responder => {
             return responder.name;
           }).join(', ')}</h4>
-          <h4>{moment(new Date(this.props.post.created_at)).format('MMMM Do')}</h4>
-          <p>{this.props.post.description}</p>
+          <h4>Date: {moment(new Date(this.props.post.created_at)).format('MMMM Do')}</h4>
+          <div className="postcontent">
+            <p>{this.props.post.description}</p>
+          </div>
           {this.chat()}
         </div>
       );

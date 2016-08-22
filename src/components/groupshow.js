@@ -109,20 +109,21 @@ class GroupShow extends Component {
     } else {
       return (
         <div className="viewgroup">
-          <h1>{this.props.group.name}</h1>
+          <div className="titlebar">
+            <h1>{this.props.group.name}</h1>
+            <button onClick={() => {
+              this.setState({
+                isEditing: true,
+                name: this.props.group.name,
+                description: this.props.group.description,
+                members: this.props.group.members.map(member => {
+                  return { value: member._id, label: member.name };
+                }),
+              });
+            }}>Edit Group</button>
+          </div>
           <h4>{this.props.group.members.length} member(s)</h4>
           <p>{this.props.group.description}</p>
-          <button onClick={() => {
-            this.setState({
-              isEditing: true,
-              name: this.props.group.name,
-              description: this.props.group.description,
-              members: this.props.group.members.map(member => {
-                return { value: member._id, label: member.name };
-              }),
-            });
-          }}>Edit Group</button>
-
           <ul>
             {this.props.posts.map((post) => {
               const groups = post.groups.map(group => {
