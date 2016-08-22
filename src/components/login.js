@@ -11,8 +11,8 @@ class Login extends Component {
     // init component state here
     this.state = {};
 
-    // this.loginRedirect = 'http://gameplan.surge.sh/login';
-    this.loginRedirect = 'http://localhost:8080/login';
+    this.loginRedirect = 'http://gameplan.surge.sh/login';
+    // this.loginRedirect = 'http://localhost:8080/login';
   }
 
   render() {
