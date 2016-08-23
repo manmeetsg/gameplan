@@ -13,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div id="background"></div>
         <NavBar />
         {this.props.children}
       </div>

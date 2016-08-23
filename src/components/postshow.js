@@ -34,6 +34,10 @@ class PostShow extends Component {
   componentWillMount() {
     this.props.fetchPost(this.props.params.id);
     this.props.getMe();
+
+    setInterval(() => {
+      this.props.fetchPost(this.props.params.id);
+    }, 1000);
   }
 
   onSubmit(event) {
@@ -110,14 +114,27 @@ class PostShow extends Component {
     }
   }
 
+  edit() {
+    if (this.props.post.author && this.props.me && this.props.post.author._id === this.props.me._id) {
+      return (
+        <button onClick={() => {
+          this.setState({
+            isEditing: true,
+            title: this.props.post.title,
+            description: this.props.post.description,
+          });
+        }}>Edit Post</button>
+      );
+    }
+  }
+
   chat() {
     if (this.props.post.responders.map(responder => { return responder._id; }).indexOf(this.props.me._id) > -1) {
       return (
         <div>
-          <h2>Chat:</h2>
+          <h2>Chat</h2>
           <div className="chat" id="chat">
             {this.props.post.chat.map(message => {
-              console.log(message);
               return (
                 <div className="message" key={message._id}>
                   <span className="poster">{message.poster.name}</span>
@@ -156,7 +173,7 @@ class PostShow extends Component {
             <textarea name="description" rows="3" placeholder="Have fun with others" onChange={this.onDescriptionChange} value={this.state.description} />
             <div className="center">
               <button type="submit">Save Post</button>
-              <button className="cancel" onClick={() => {
+              <button type="button" className="cancel" onClick={() => {
                 this.setState({
                   isEditing: false,
                 });
@@ -171,13 +188,7 @@ class PostShow extends Component {
           <div className="postheader">
             <h1>{this.props.post.title}</h1>
             <div>
-              <button onClick={() => {
-                this.setState({
-                  isEditing: true,
-                  title: this.props.post.title,
-                  description: this.props.post.description,
-                });
-              }}>Edit Post</button>
+            {this.edit()}
             {this.join()}
             </div>
           </div>
