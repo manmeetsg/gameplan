@@ -165,6 +165,10 @@ nav {
   margin: 0 auto;
   position: relative;
 
+  h1 {
+    color: white;
+  }
+
   .titlebar {
     display: flex;
     justify-content: space-between;
@@ -176,7 +180,7 @@ nav {
   }
 
   .item, #groupplus {
-    color: rgba(0, 0, 0, .8);
+    color: white;
     text-align: center;
     text-decoration: none;
 
@@ -349,10 +353,17 @@ h1 {
 
 .viewpost {
   margin: 0 20px;
-  padding: 20px;
   position: relative;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
+  
+  .wrapper, .chatwindow {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .chatwindow {
+    margin-top: 10px;
+  }
 
   .postheader {
     display: flex;
@@ -430,12 +441,11 @@ h1 {
 
   .chat {
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .message {
       padding: 25px 10px 10px 10px;
       position: relative;
-      margin-right: 15px;
 
       background-color: rgba(255, 255, 255, 0.8);
 
@@ -469,6 +479,10 @@ h1 {
   margin: 0 auto;
   position: relative;
 
+  h1 {
+    color: white;
+  }
+
   ul {
     list-style-type: none;
     margin: 0px;
@@ -486,7 +500,7 @@ h1 {
   }
 
   .item, #plus {
-    color: rgba(0, 0, 0, 0.8);
+    color: white;
     text-align: center;
     text-decoration: none;
 
@@ -568,9 +582,7 @@ h1 {
   right: 0px;
   bottom: 0px;
 
-  filter: blur(8px);
-
-  background-image: url(http://hdwallpaperbackgrounds.net/wp-content/uploads/2016/07/Desktop-backgrounds-12.jpg);
+  background-image: url(http://www.writingfordesigners.com/wp-content/uploads/2015/09/geometric_background_13.jpg);
   background-size: cover;
 }
 
