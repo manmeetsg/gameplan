@@ -35,7 +35,8 @@ class PostShow extends Component {
     this.props.fetchPost(this.props.params.id);
     this.props.getMe();
 
-    setInterval(() => {
+    clearInterval(window.chatUpdate);
+    window.chatUpdate = setInterval(() => {
       this.props.fetchPost(this.props.params.id);
     }, 1000);
   }
