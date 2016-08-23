@@ -24,7 +24,7 @@ class GroupList extends Component {
     if (this.props.groups.length === 0) {
       return (
         <div className="groups">
-          <h1>Groups</h1>
+          <Link to="/groups"><h1>Groups</h1></Link>
           Loading...
         </div>
       );
@@ -32,7 +32,7 @@ class GroupList extends Component {
       return (
         <div className="groups">
           <div className="titlebar">
-            <h1>Groups</h1>
+            <Link to="/groups"><h1>Groups</h1></Link>
             <div className="item">
               <Link to="/groups/new" id="groupplus">
                 <i className="fa fa-user-plus" aria-hidden="true"></i>

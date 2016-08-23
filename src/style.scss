@@ -163,11 +163,16 @@ nav {
   width: 100%;
   max-width: 50em;
   margin: 0 auto;
+  position: relative;
 
   .titlebar {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .item, #groupplus {
@@ -462,16 +467,22 @@ h1 {
   width: 100%;
   max-width: 50em;
   margin: 0 auto;
+  position: relative;
 
   ul {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
   }
+
   .titlebar {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .item, #plus {
@@ -533,7 +544,7 @@ h1 {
 
 .home {
   display: flex;
-  padding: 0px 20px;
+  padding: 0 20px 40px 20px;
   position: relative;
 
   .posts {
