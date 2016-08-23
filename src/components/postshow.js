@@ -132,7 +132,7 @@ class PostShow extends Component {
   chat() {
     if (this.props.post.responders.map(responder => { return responder._id; }).indexOf(this.props.me._id) > -1) {
       return (
-        <div>
+        <div className="chatwindow">
           <h2>Chat</h2>
           <div className="chat" id="chat">
             {this.props.post.chat.map(message => {
@@ -161,45 +161,51 @@ class PostShow extends Component {
     if (!this.props.post) { // No set post (initially)
       return (
         <div className="viewpost">
-          <h1>Loading...</h1>
+          <div className="wrapper">
+            <h1>Loading...</h1>
+          </div>
         </div>
       );
     } else if (this.state.isEditing) {
       return (
         <div className="viewpost">
-          <form onSubmit={this.onSubmit}>
-            <label htmlFor="title">Title</label>
-            <input type="text" placeholder="Copper Mines" name="title" onChange={this.onTitleChange} value={this.state.title} />
-            <label htmlFor="description">Description</label>
-            <textarea name="description" rows="3" placeholder="Have fun with others" onChange={this.onDescriptionChange} value={this.state.description} />
-            <div className="center">
-              <button type="submit">Save Post</button>
-              <button type="button" className="cancel" onClick={() => {
-                this.setState({
-                  isEditing: false,
-                });
-              }}>Cancel</button>
-            </div>
-          </form>
+          <div className="wrapper">
+            <form onSubmit={this.onSubmit}>
+              <label htmlFor="title">Title</label>
+              <input type="text" placeholder="Copper Mines" name="title" onChange={this.onTitleChange} value={this.state.title} />
+              <label htmlFor="description">Description</label>
+              <textarea name="description" rows="3" placeholder="Have fun with others" onChange={this.onDescriptionChange} value={this.state.description} />
+              <div className="center">
+                <button type="submit">Save Post</button>
+                <button type="button" className="cancel" onClick={() => {
+                  this.setState({
+                    isEditing: false,
+                  });
+                }}>Cancel</button>
+              </div>
+            </form>
+          </div>
         </div>
       );
     } else {
       return (
         <div className="viewpost">
-          <div className="postheader">
-            <h1>{this.props.post.title}</h1>
-            <div>
-            {this.edit()}
-            {this.join()}
+          <div className="wrapper">
+            <div className="postheader">
+              <h1>{this.props.post.title}</h1>
+              <div>
+              {this.edit()}
+              {this.join()}
+              </div>
             </div>
-          </div>
-          <h3>Author: {this.props.post.author.name}</h3>
-          <h4>Members: {this.props.post.responders.map(responder => {
-            return responder.name;
-          }).join(', ')}</h4>
-          <h4>Date: {moment(new Date(this.props.post.created_at)).format('MMMM Do')}</h4>
-          <div className="postcontent">
-            <p>{this.props.post.description}</p>
+            <h3>Author: {this.props.post.author.name}</h3>
+            <h4>Members: {this.props.post.responders.map(responder => {
+              return responder.name;
+            }).join(', ')}</h4>
+            <h4>Date: {moment(new Date(this.props.post.created_at)).format('MMMM Do')}</h4>
+            <div className="postcontent">
+              <p>{this.props.post.description}</p>
+            </div>
           </div>
           {this.chat()}
         </div>
