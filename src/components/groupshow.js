@@ -97,7 +97,7 @@ class GroupShow extends Component {
             />
             <div className="center">
               <button type="submit">Save Group</button>
-              <button className="cancel" onClick={() => {
+              <button type="button" className="cancel" onClick={() => {
                 this.setState({
                   isEditing: false,
                 });

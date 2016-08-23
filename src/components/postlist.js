@@ -20,7 +20,7 @@ class PostList extends Component {
     if (this.props.posts.length === 0) {
       return (
         <div className="posts">
-          <h1>Posts</h1>
+          <Link to="/posts"><h1>Posts</h1></Link>
           Loading...
         </div>
       );
@@ -28,7 +28,7 @@ class PostList extends Component {
       return (
         <div className="posts">
           <div className="titlebar">
-            <h1>Posts</h1>
+            <Link to="/posts"><h1>Posts</h1></Link>
             <div className="item">
               <Link to="/posts/new" id="plus">
                 <i className="fa fa-plus" aria-hidden="true"></i>
