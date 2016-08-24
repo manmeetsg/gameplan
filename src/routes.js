@@ -15,6 +15,8 @@ import PostList from './components/postlist';
 import PostNew from './components/postnew';
 import PostShow from './components/postshow';
 
+import ProfileShow from './components/profileshow';
+
 export default(
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
@@ -27,5 +29,7 @@ export default(
     <Route path="posts" component={PostList} />
     <Route path="posts/new" component={PostNew} />
     <Route path="posts/:id" component={PostShow} />
+
+    <Route path="profile" component={ProfileShow} />
   </Route>
 );
