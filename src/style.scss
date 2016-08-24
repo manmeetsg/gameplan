@@ -591,9 +591,23 @@ h1 {
 }
 
 .content {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
   text-align: center;
-  padding-top: 100px;
-  color: black;
+  color: rgba(0, 0, 0, 0.8);
+
+  img {
+    filter: invert(90%);
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 15px;
+  }
 }
 
 input, textarea, select {

@@ -27,7 +27,7 @@ class ProfileShow extends Component {
     } else {
       return (
         <div className="posts">
-          <h1>{this.props.me.name}&#39;s Posts</h1>
+          <h1>{this.props.me.name}'s Posts</h1>
           <ul>
             {this.props.posts.map((post) => {
               if (post.author._id === this.props.me._id) {
