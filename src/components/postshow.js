@@ -162,7 +162,7 @@ class PostShow extends Component {
       );
     }
   }
-  
+
   onPostDelete() {
     this.props.deletePost(this.props.params.id);
   }

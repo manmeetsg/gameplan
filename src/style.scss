@@ -166,7 +166,15 @@ nav {
   position: relative;
 
   h1 {
+    color: rgba(255,255,255,0.9);
+  }
+
+  h1:hover {
     color: white;
+  }
+
+  h1, a {
+    text-decoration: none;
   }
 
   .titlebar {
@@ -180,7 +188,7 @@ nav {
   }
 
   .item, #groupplus {
-    color: white;
+    color: rgba(255,255,255,0.9);
     text-align: center;
     text-decoration: none;
 
@@ -235,7 +243,6 @@ h1 {
 
 .viewgroup {
   margin: 0 20px;
-  padding: 20px;
   position: relative;
 
   h4 {
@@ -276,6 +283,11 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .cancel {
+    background-color: rgba(178,34,34, 0.8);
+    width: auto;
   }
 }
 
@@ -350,7 +362,7 @@ h1 {
 .viewpost {
   margin: 0 20px;
   position: relative;
-  
+
   .wrapper, .chatwindow {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
@@ -476,6 +488,10 @@ h1 {
   position: relative;
 
   h1 {
+    color: rgba(255,255,255,0.9);
+  }
+
+  h1:hover {
     color: white;
   }
 
@@ -483,6 +499,10 @@ h1 {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
+  }
+
+  h1, a {
+    text-decoration: none;
   }
 
   .titlebar {
@@ -493,10 +513,11 @@ h1 {
     a {
       text-decoration: none;
     }
+
   }
 
   .item, #plus {
-    color: white;
+    color: rgba(255,255,255,0.9);
     text-align: center;
     text-decoration: none;
 

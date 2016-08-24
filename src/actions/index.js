@@ -107,6 +107,16 @@ export function fetchGroup(id) {
   };
 }
 
+export function deleteGroup(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/groups/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      browserHistory.push('/');
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
 /*
   ================
     POSTS
