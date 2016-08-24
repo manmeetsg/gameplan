@@ -179,11 +179,13 @@ class GroupShow extends Component {
               return (
                 <Link to={`/posts/${post._id}`} key={post._id} className="post">
                   <li key={post._id}>
-                    <div className="title">{post.title}</div>
+                    <div className="titlebar">
+                      <div className="title">{post.title}</div>
+                      <span className="groupNames">{groups}</span>
+                    </div>
                     <div className="date">{moment(new Date(post.created_at)).format('MMMM Do')}</div>
                     <div className="responders">{post.author.name}</div>
                     <div className="description">{post.description}</div>
-                    <span className="groupNames">{groups}</span>
                   </li>
                 </Link>
               );
