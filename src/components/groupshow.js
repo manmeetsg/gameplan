@@ -19,6 +19,7 @@ class GroupShow extends Component {
         members: this.props.group.members.map(member => {
           return { value: member._id, label: member.name };
         }),
+        alert: '',
       };
     } else {
       this.state = {
@@ -49,18 +50,25 @@ class GroupShow extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    this.setState({
-      isEditing: false,
-    });
+    if (document.getElementsByTagName('form')[0].checkValidity()) {
+      this.setState({
+        isEditing: false,
+        alert: '',
+      });
 
-    this.props.updateGroup(
-      this.props.params.id,
-      {
-        name: this.state.name,
-        description: this.state.description,
-        members: this.state.members.map(member => { return member.value; }),
-      }
-    );
+      this.props.updateGroup(
+        this.props.params.id,
+        {
+          name: this.state.name,
+          description: this.state.description,
+          members: this.state.members.map(member => { return member.value; }),
+        }
+      );
+    } else {
+      this.setState({
+        alert: 'Make sure all fields are filled out.',
+      });
+    }
   }
 
   onNameChange(e) {
@@ -76,9 +84,19 @@ class GroupShow extends Component {
   }
 
   delete() {
-    if (this.props.group.owner === this.props.me._id) {
+    if (this.props.group != null && this.props.me != null && this.props.group.owner === this.props.me._id) {
       return (
         <button type="button" className="cancel" onClick={this.onGroupDelete}> Delete Group</button>
+      );
+    }
+  }
+
+  alert() {
+    if (this.state.alert) {
+      return (
+        <div className="alert">
+          {this.state.alert}
+        </div>
       );
     }
   }
@@ -98,11 +116,12 @@ class GroupShow extends Component {
       return (
         <div className="newgroup">
           <h1>Editing Group</h1>
+          {this.alert()}
           <form onSubmit={this.onSubmit}>
             <label htmlFor="name">Name</label>
-            <input type="text" onChange={this.onNameChange} name="name" placeholder="Dartmouth '18s, CS Majors, etc." value={this.state.name} />
+            <input type="text" required onChange={this.onNameChange} name="name" placeholder="Dartmouth '18s, CS Majors, etc." value={this.state.name} />
             <label htmlFor="description">Description</label>
-            <textarea type="text" onChange={this.onDescriptionChange} name="description" rows="3" placeholder="A great group of people!" value={this.state.description} />
+            <textarea type="text" required onChange={this.onDescriptionChange} name="description" rows="3" placeholder="A great group of people!" value={this.state.description} />
             <label htmlFor="members">Members</label>
             <Select
               name="members"
@@ -112,6 +131,7 @@ class GroupShow extends Component {
                   return { value: user._id, label: user.name };
                 })
               }
+              required
               onChange={members => this.setState({ members })}
               value={this.state.members}
             />
@@ -120,6 +140,7 @@ class GroupShow extends Component {
               <button type="button" className="cancel" onClick={() => {
                 this.setState({
                   isEditing: false,
+                  alert: '',
                 });
               }}>Cancel</button>
             </div>
