@@ -167,6 +167,7 @@ nav {
 
 .groups {
   width: 100%;
+  min-width: 200px;
   max-width: 50em;
   margin: 0 auto;
   position: relative;
@@ -213,6 +214,7 @@ nav {
 
     li {
       margin-bottom: 10px;
+      word-break: break-word;
     }
 
     a {
@@ -250,6 +252,7 @@ h1 {
 .viewgroup {
   margin: 0 20px;
   position: relative;
+  word-break: break-word;
 
   h4 {
     margin: 0px;
@@ -376,6 +379,7 @@ h1 {
 .viewpost {
   margin: 0 20px;
   position: relative;
+  word-break: break-word;
 
   .wrapper, .chatwindow {
     background-color: rgba(255, 255, 255, 0.8);
