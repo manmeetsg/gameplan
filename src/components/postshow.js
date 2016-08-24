@@ -75,6 +75,7 @@ class PostShow extends Component {
     if (document.getElementsByTagName('form')[0].checkValidity()) {
       this.setState({
         isEditing: false,
+        alert: '',
       });
 
       this.props.updatePost(
@@ -237,6 +238,7 @@ class PostShow extends Component {
               <button type="button" className="cancel" onClick={() => {
                 this.setState({
                   isEditing: false,
+                  alert: '',
                 });
               }}>Cancel</button>
             </div>
