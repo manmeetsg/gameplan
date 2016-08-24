@@ -25,7 +25,7 @@ class PostShow extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.postComment = this.postComment.bind(this);
-
+    this.onPostDelete = this.onPostDelete.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onDescriptionChange = this.onDescriptionChange.bind(this);
     this.onCommentChange = this.onCommentChange.bind(this);
@@ -160,6 +160,10 @@ class PostShow extends Component {
     }
   }
 
+  onPostDelete() {
+    this.props.deletePost(this.props.params.id);
+  }
+
   render() {
     if (!this.props.authenticated) {
       browserHistory.push('/login');
@@ -201,8 +205,9 @@ class PostShow extends Component {
             <div className="postheader">
               <h1>{this.props.post.title}</h1>
               <div>
-              {this.edit()}
-              {this.join()}
+                {this.edit()}
+                {this.join()}
+                <button type="button" className="cancel" onClick={this.onPostDelete}> Delete </button>
               </div>
             </div>
             <h3>Author: {this.props.post.author.name}</h3>
