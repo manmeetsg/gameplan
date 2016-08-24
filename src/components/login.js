@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -15,11 +14,16 @@ class Login extends Component {
     // this.loginRedirect = 'http://localhost:8080/login';
   }
 
+  componentWillMount() {
+    document.title = 'GamePlan | Login';
+  }
+
   render() {
     if (this.props.authenticated) {
-      browserHistory.push('/');
       return (
-        <div></div>
+        <div className="content">
+          You're already logged in.
+        </div>
       );
     } else {
       const ticket = this.props.location.query.ticket;

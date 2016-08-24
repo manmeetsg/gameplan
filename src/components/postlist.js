@@ -14,6 +14,8 @@ class PostList extends Component {
 
   componentWillMount() {
     this.props.fetchPosts();
+
+    document.title = 'GamePlan | Posts';
   }
 
   render() {

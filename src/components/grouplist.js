@@ -14,6 +14,8 @@ class GroupList extends Component {
 
   componentWillMount() {
     this.props.fetchGroups();
+
+    document.title = 'GamePlan | Groups';
   }
 
   render() {

@@ -14,6 +14,7 @@ class GroupNew extends Component {
       name: '',
       description: '',
       members: [],
+      alert: '',
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -24,12 +25,16 @@ class GroupNew extends Component {
   componentWillMount() {
     this.props.fetchUsers();
     this.props.getMe();
+
+    document.title = 'GamePlan | New Group';
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      members: [{ value: nextProps.me._id, label: nextProps.me.name }],
-    });
+    if (nextProps.me != null) {
+      this.setState({
+        members: [{ value: nextProps.me._id, label: nextProps.me.name }],
+      });
+    }
   }
 
   onNameChange(e) {
@@ -43,11 +48,27 @@ class GroupNew extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    this.props.createGroup({
-      name: this.state.name,
-      description: this.state.description,
-      members: this.state.members.map(member => { return member.value; }),
-    });
+    if (document.getElementsByTagName('form')[0].checkValidity()) {
+      this.props.createGroup({
+        name: this.state.name,
+        description: this.state.description,
+        members: this.state.members.map(member => { return member.value; }),
+      });
+    } else {
+      this.setState({
+        alert: 'Make sure all fields are filled out.',
+      });
+    }
+  }
+
+  alert() {
+    if (this.state.alert) {
+      return (
+        <div className="alert">
+          {this.state.alert}
+        </div>
+      );
+    }
   }
 
   render() {
@@ -58,11 +79,12 @@ class GroupNew extends Component {
     return (
       <div className="newgroup">
         <h1>New Group</h1>
+        {this.alert()}
         <form onSubmit={this.onSubmit}>
           <label htmlFor="name">Name</label>
-          <input type="text" onChange={this.onNameChange} name="name" placeholder="Dartmouth '18s, CS Majors, etc." value={this.state.name} />
+          <input type="text" required onChange={this.onNameChange} name="name" placeholder="Dartmouth '18s, CS Majors, etc." value={this.state.name} />
           <label htmlFor="description">Description</label>
-          <textarea type="text" onChange={this.onDescriptionChange} name="description" rows="3" placeholder="A great group of people!" value={this.state.description} />
+          <textarea type="text" required onChange={this.onDescriptionChange} name="description" rows="3" placeholder="A great group of people!" value={this.state.description} />
           <label htmlFor="members">Members</label>
           <Select
             name="members"
@@ -72,6 +94,7 @@ class GroupNew extends Component {
                 return { value: user._id, label: user.name };
               })
             }
+            required
             onChange={members => this.setState({ members })}
             value={this.state.members}
           />

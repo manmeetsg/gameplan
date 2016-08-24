@@ -39,6 +39,13 @@ class GroupShow extends Component {
     this.props.fetchUsers();
   }
 
+  componentDidUpdate(prevProps) {
+    // Check name
+    if (this.props.group != null) {
+      document.title = `GamePlan | ${this.props.group.name}`;
+    }
+  }
+
   onSubmit(event) {
     event.preventDefault();
 
@@ -122,24 +129,26 @@ class GroupShow extends Component {
     } else {
       return (
         <div className="viewgroup">
-          <div className="titlebar">
-            <h1>{this.props.group.name}</h1>
-            <div>
-              <button onClick={() => {
-                this.setState({
-                  isEditing: true,
-                  name: this.props.group.name,
-                  description: this.props.group.description,
-                  members: this.props.group.members.map(member => {
-                    return { value: member._id, label: member.name };
-                  }),
-                });
-              }}>Edit Group</button>
-              {this.delete()}
+          <div className="top">
+            <div className="titlebar">
+              <h1>{this.props.group.name}</h1>
+              <div>
+                <button onClick={() => {
+                  this.setState({
+                    isEditing: true,
+                    name: this.props.group.name,
+                    description: this.props.group.description,
+                    members: this.props.group.members.map(member => {
+                      return { value: member._id, label: member.name };
+                    }),
+                  });
+                }}>Edit Group</button>
+                {this.delete()}
+              </div>
             </div>
+            <h4>{this.props.group.members.length} member(s)</h4>
+            <p>{this.props.group.description}</p>
           </div>
-          <h4>{this.props.group.members.length} member(s)</h4>
-          <p>{this.props.group.description}</p>
           <ul>
             {this.props.posts.map((post) => {
               const groups = post.groups.map(group => {
