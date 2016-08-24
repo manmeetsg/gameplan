@@ -63,51 +63,17 @@ class NavBar extends Component {
     }
   }
 
-/*
-if (this.props.authenticated) {
-  return (
-    <div>
-      <button onClick={this.onLogOut} className="nav-links">Log Out</button>
-    </div>
-  );
-} else {
-  return (
-    <div>
-      <div>
-        <Link to="/login" className="nav-links">Log In</Link>
-      </div>
-    </div>
-  );
-}
-*/
-
   render() {
     return (
       <nav>
         <div className="item title">
-          <Link to="/"><img src="../../readmepictures/GamePlanLogo.png" alt="Mountain_view" height="40px" /></Link>
+          <Link to="/"><img src="../../readmepictures/GamePlanLogo.png" alt="Logo" height="40px" /></Link>
         </div>
         {this.auth()}
       </nav>
     );
   }
 }
-
-/*
-<div className="nav">
-  <div>
-    <Link to="/groups" className="nav-links">View Groups</Link>
-  </div>
-  <div className="item">
-    <Link to="/" id="home"><div id="home-top">what&#39;s your</div><div id="home-bottom">Game Plan?</div></Link>
-  </div>
-  <div>
-    <Link to="/posts/new" id="newpost">New Post</Link>
-  </div>
-
-  {this.auth()}
-</div>
-*/
 
 const mapDispatchToProps = (state) => (
   {

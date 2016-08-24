@@ -16,13 +16,16 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.fetchPosts();
+
+    document.title = 'GamePlan | Home';
   }
 
   render() {
     if (!this.props.authenticated) {
       return (
         <div className="content">
-          Log in using your Dartmouth account to get started!
+          <img src="../../readmepictures/GamePlanLogo.png" alt="Logo" />
+          Log in using your Dartmouth account to get started posting and chatting!
         </div>
       );
     } else {
