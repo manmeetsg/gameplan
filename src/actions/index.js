@@ -195,6 +195,16 @@ export function postComment(id, message) {
   };
 }
 
+export function deletePost(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      browserHistory.push('/');
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
 /*
   ================
     USERS
