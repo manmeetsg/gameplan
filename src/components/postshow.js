@@ -15,6 +15,7 @@ class PostShow extends Component {
         title: this.props.post.title,
         description: this.props.post.description,
         comment: '',
+        alert: '',
       };
     } else {
       this.state = {
@@ -42,29 +43,52 @@ class PostShow extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.post != null && prevProps.post != null && prevProps.me == null) {
-      const chat = document.getElementById('chat');
-      chat.scrollTop = chat.scrollHeight;
-    } else if (this.props.post != null && prevProps.post != null && this.props.post.chat.length > prevProps.post.chat.length) {
-      const chat = document.getElementById('chat');
-      chat.scrollTop = chat.scrollHeight;
+    if (this.props.post != null && prevProps.post != null) {
+      // If new message
+      if (this.props.post.chat.length > prevProps.post.chat.length && document.getElementById('chat')) {
+        const chat = document.getElementById('chat');
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      // If just joined
+      if (this.props.post.responders.length > prevProps.post.responders.length && document.getElementById('chat')) {
+        const chat = document.getElementById('chat');
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      // If first time appearing
+      if (prevProps.me == null && document.getElementById('chat')) {
+        const chat = document.getElementById('chat');
+        chat.scrollTop = chat.scrollHeight;
+      }
+    }
+
+    // Check title
+    if (this.props.post != null) {
+      document.title = `GamePlan | ${this.props.post.title}`;
     }
   }
 
   onSubmit(event) {
     event.preventDefault();
 
-    this.setState({
-      isEditing: false,
-    });
+    if (document.getElementsByTagName('form')[0].checkValidity()) {
+      this.setState({
+        isEditing: false,
+      });
 
-    this.props.updatePost(
-      this.props.params.id,
-      {
-        title: this.state.title,
-        description: this.state.description,
-      }
-    );
+      this.props.updatePost(
+        this.props.params.id,
+        {
+          title: this.state.title,
+          description: this.state.description,
+        }
+      );
+    } else {
+      this.setState({
+        alert: 'Make sure all fields are filled out.',
+      });
+    }
   }
 
   onTitleChange(e) {
@@ -77,6 +101,10 @@ class PostShow extends Component {
 
   onCommentChange(e) {
     this.setState({ comment: e.target.value });
+  }
+
+  onPostDelete() {
+    this.props.deletePost(this.props.params.id);
   }
 
   postComment(event) {
@@ -162,19 +190,24 @@ class PostShow extends Component {
       );
     }
   }
-  
-  onPostDelete() {
-    this.props.deletePost(this.props.params.id);
-  }
 
   delete() {
     if (this.props.post.author && this.props.me && this.props.post.author._id === this.props.me._id) {
       return (
-        <button type="button" className="cancel" onClick={this.onPostDelete}> Delete </button>
+        <button type="button" className="cancel" onClick={this.onPostDelete}>Delete</button>
       );
     }
   }
 
+  alert() {
+    if (this.state.alert) {
+      return (
+        <div className="alert">
+          {this.state.alert}
+        </div>
+      );
+    }
+  }
 
   render() {
     if (!this.props.authenticated) {
@@ -191,23 +224,23 @@ class PostShow extends Component {
       );
     } else if (this.state.isEditing) {
       return (
-        <div className="viewpost">
-          <div className="wrapper">
-            <form onSubmit={this.onSubmit}>
-              <label htmlFor="title">Title</label>
-              <input type="text" placeholder="Copper Mines" name="title" onChange={this.onTitleChange} value={this.state.title} />
-              <label htmlFor="description">Description</label>
-              <textarea name="description" rows="3" placeholder="Have fun with others" onChange={this.onDescriptionChange} value={this.state.description} />
-              <div className="center">
-                <button type="submit">Save Post</button>
-                <button type="button" className="cancel" onClick={() => {
-                  this.setState({
-                    isEditing: false,
-                  });
-                }}>Cancel</button>
-              </div>
-            </form>
-          </div>
+        <div className="newpost">
+          <h1>Editing Post</h1>
+          {this.alert()}
+          <form onSubmit={this.onSubmit}>
+            <label htmlFor="title">Title</label>
+            <input type="text" required placeholder="Copper Mines" name="title" onChange={this.onTitleChange} value={this.state.title} />
+            <label htmlFor="description">Description</label>
+            <textarea name="description" required rows="3" placeholder="Have fun with others" onChange={this.onDescriptionChange} value={this.state.description} />
+            <div className="center">
+              <button type="submit">Save Post</button>
+              <button type="button" className="cancel" onClick={() => {
+                this.setState({
+                  isEditing: false,
+                });
+              }}>Cancel</button>
+            </div>
+          </form>
         </div>
       );
     } else {
