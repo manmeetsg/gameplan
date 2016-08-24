@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -17,10 +17,9 @@ class Login extends Component {
 
   render() {
     if (this.props.authenticated) {
+      browserHistory.push('/');
       return (
-        <div>
-          You are authenticated!
-        </div>
+        <div></div>
       );
     } else {
       const ticket = this.props.location.query.ticket;
