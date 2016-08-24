@@ -41,6 +41,13 @@ class PostShow extends Component {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.post.chat.length > prevProps.post.chat.length) {
+      const chat = document.getElementById('chat');
+      chat.scrollTop = chat.scrollHeight;
+    }
+  }
+
   onSubmit(event) {
     event.preventDefault();
 
