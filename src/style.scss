@@ -504,6 +504,7 @@ h1 {
   max-width: 50em;
   margin: 0 auto;
   position: relative;
+  word-break: break-word;
 
   h1 {
     color: rgba(255,255,255,0.9);
@@ -580,9 +581,32 @@ h1 {
   }
 
   .groupNames {
-    position: absolute;
-    top: 2px;
-    right: 0px;
+    word-break: normal;
+  }
+}
+
+.all {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.filled-content {
+  flex: 1;
+}
+
+.footer {
+  font-size: 0.8em;
+  position: relative;
+  display: table;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 auto 15px auto;
+
+  span {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
   }
 }
 
