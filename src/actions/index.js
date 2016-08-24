@@ -1,5 +1,4 @@
 import axios from 'axios';
-import http from 'http';
 import { browserHistory } from 'react-router';
 
 // keys for actiontypes
@@ -29,13 +28,6 @@ export function logoutUser() {
     localStorage.removeItem('token');
     dispatch({ type: ActionTypes.DEAUTH_USER });
     browserHistory.push('/');
-
-    // Try and logout with CAS
-    http.get('http://login.dartmouth.edu/cas/logout', res => {
-      // Success
-    }).on('error', e => {
-      // Error
-    });
   };
 }
 

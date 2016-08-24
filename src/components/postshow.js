@@ -42,7 +42,10 @@ class PostShow extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.post.chat.length > prevProps.post.chat.length) {
+    if (this.props.post != null && prevProps.post != null && prevProps.me == null) {
+      const chat = document.getElementById('chat');
+      chat.scrollTop = chat.scrollHeight;
+    } else if (this.props.post != null && prevProps.post != null && this.props.post.chat.length > prevProps.post.chat.length) {
       const chat = document.getElementById('chat');
       chat.scrollTop = chat.scrollHeight;
     }
@@ -92,7 +95,7 @@ class PostShow extends Component {
   }
 
   join() {
-    if (this.props.me._id) {
+    if (this.props.me != null) {
       if (this.props.post.responders.map(responder => { return responder._id; }).indexOf(this.props.me._id) <= -1) {
         return (
           <button onClick={() => {
@@ -123,7 +126,7 @@ class PostShow extends Component {
   }
 
   edit() {
-    if (this.props.post.author && this.props.me && this.props.post.author._id === this.props.me._id) {
+    if (this.props.post.author != null && this.props.me != null && this.props.post.author._id === this.props.me._id) {
       return (
         <button onClick={() => {
           this.setState({
@@ -137,7 +140,7 @@ class PostShow extends Component {
   }
 
   chat() {
-    if (this.props.post.responders.map(responder => { return responder._id; }).indexOf(this.props.me._id) > -1) {
+    if (this.props.me != null && this.props.post.responders.map(responder => { return responder._id; }).indexOf(this.props.me._id) > -1) {
       return (
         <div className="chatwindow">
           <h2>Chat</h2>

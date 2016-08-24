@@ -26,6 +26,7 @@ class Home extends Component {
         <div className="content">
           <img src="../../readmepictures/GamePlanLogo.png" alt="Logo" />
           Log in using your Dartmouth account to get started posting and chatting!
+          <iframe src="http://login.dartmouth.edu/cas/logout" height="0" width="0"></iframe>
         </div>
       );
     } else {
