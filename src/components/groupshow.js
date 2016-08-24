@@ -29,12 +29,13 @@ class GroupShow extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onNameChange = this.onNameChange.bind(this);
     this.onDescriptionChange = this.onDescriptionChange.bind(this);
+    this.onGroupDelete = this.onGroupDelete.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchGroup(this.props.params.id);
     this.props.fetchPostsForGroup(this.props.params.id);
-
+    this.props.getMe();
     this.props.fetchUsers();
   }
 
@@ -68,6 +69,18 @@ class GroupShow extends Component {
 
   onDescriptionChange(e) {
     this.setState({ description: e.target.value });
+  }
+
+  onGroupDelete() {
+    this.props.deleteGroup(this.props.params.id);
+  }
+
+  delete() {
+    if (this.props.group.owner === this.props.me._id) {
+      return (
+        <button type="button" className="cancel" onClick={this.onGroupDelete}> Delete Group</button>
+      );
+    }
   }
 
   render() {
@@ -119,16 +132,19 @@ class GroupShow extends Component {
           <div className="top">
             <div className="titlebar">
               <h1>{this.props.group.name}</h1>
-              <button onClick={() => {
-                this.setState({
-                  isEditing: true,
-                  name: this.props.group.name,
-                  description: this.props.group.description,
-                  members: this.props.group.members.map(member => {
-                    return { value: member._id, label: member.name };
-                  }),
-                });
-              }}>Edit Group</button>
+              <div>
+                <button onClick={() => {
+                  this.setState({
+                    isEditing: true,
+                    name: this.props.group.name,
+                    description: this.props.group.description,
+                    members: this.props.group.members.map(member => {
+                      return { value: member._id, label: member.name };
+                    }),
+                  });
+                }}>Edit Group</button>
+                {this.delete()}
+              </div>
             </div>
             <h4>{this.props.group.members.length} member(s)</h4>
             <p>{this.props.group.description}</p>
@@ -164,6 +180,7 @@ const mapDispatchToProps = (state) => (
     authenticated: state.auth.authenticated,
     posts: state.posts.all,
     users: state.users.all,
+    me: state.users.me,
   }
 );
 
