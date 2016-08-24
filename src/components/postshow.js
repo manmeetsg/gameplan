@@ -136,6 +136,14 @@ class PostShow extends Component {
     }
   }
 
+  delete() {
+    return (
+      <button onClick={() => {
+        this.props.deletePost(this.props.params.id);
+      }}>Edit Post</button>
+    );
+  }
+
   chat() {
     if (this.props.post.responders.map(responder => { return responder._id; }).indexOf(this.props.me._id) > -1) {
       return (
@@ -203,6 +211,7 @@ class PostShow extends Component {
               <div>
               {this.edit()}
               {this.join()}
+              {this.delete()}
               </div>
             </div>
             <h3>Author: {this.props.post.author.name}</h3>

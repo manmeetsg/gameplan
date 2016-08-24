@@ -16,13 +16,16 @@ export const ActionTypes = {
 
   FETCH_USERS: 'FETCH_USERS',
   FETCH_ME: 'FETCH_ME',
+
+  DELETE_GROUP: 'DELETE_GROUP',
+  DELETE_POST: 'DELETE_POST',
 };
 
-const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // Helper functions
-// deletes token from localstorage
+// deletes token from storage
 // and deauths
 export function logoutUser() {
   return (dispatch) => {
@@ -115,6 +118,19 @@ export function fetchGroup(id) {
   };
 }
 
+export function deleteGroup(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/groups/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'DELETE_GROUP',
+        payload: response.data });
+      browserHistory.push('/');
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
 /*
   ================
     POSTS
@@ -169,6 +185,7 @@ export function fetchPost(id) {
   };
 }
 
+
 export function updatePost(id, post) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts/${id}`, post, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
@@ -176,6 +193,19 @@ export function updatePost(id, post) {
         type: 'FETCH_POST',
         payload: response.data,
       });
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+}
+
+export function deletePost(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      dispatch({
+        type: 'DELETE_POST',
+        payload: response.data });
+      browserHistory.push('/');
     }).catch(error => {
       console.log(error);
     });

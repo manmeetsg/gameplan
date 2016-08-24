@@ -111,6 +111,11 @@ class GroupShow extends Component {
         <div className="viewgroup">
           <div className="titlebar">
             <h1>{this.props.group.name}</h1>
+
+            <button onClick={() => {
+              this.props.deleteGroup(this.props.params.id);
+            }}>Delete Group</button>
+
             <button onClick={() => {
               this.setState({
                 isEditing: true,
