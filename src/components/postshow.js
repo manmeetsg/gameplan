@@ -159,10 +159,19 @@ class PostShow extends Component {
       );
     }
   }
-
+  
   onPostDelete() {
     this.props.deletePost(this.props.params.id);
   }
+
+  delete() {
+    if (this.props.post.author && this.props.me && this.props.post.author._id === this.props.me._id) {
+      return (
+        <button type="button" className="cancel" onClick={this.onPostDelete}> Delete </button>
+      );
+    }
+  }
+
 
   render() {
     if (!this.props.authenticated) {
@@ -207,7 +216,7 @@ class PostShow extends Component {
               <div>
                 {this.edit()}
                 {this.join()}
-                <button type="button" className="cancel" onClick={this.onPostDelete}> Delete </button>
+                {this.delete()}
               </div>
             </div>
             <h3>Author: {this.props.post.author.name}</h3>
