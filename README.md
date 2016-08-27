@@ -1,5 +1,9 @@
 # Game Plan
+Currently accessible at: http://gameplan.surge.sh/
+
 GamePlan is a web application to facilitate group planning and coordination of events. The app strives to encourage users to step outside their comfort zones and do things they normally never take the time to do! Users can create or be added to groups of other members, and then post event ideas to any groups that they are part of. When a user “likes” a post, they are put in a group chat with all other people who have liked that post, so they can easily communicate about planning this event.
+
+
 
 ### Login
 ![alt text](readmepictures/Login.png "Login")
