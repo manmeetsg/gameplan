@@ -43,15 +43,49 @@ The profile view displays all of a users active posts.
 
 
 ## Architecture
-TODO:  descriptions of code organization and tools and libraries used
+On the front end, there are many components including App, GroupList, GroupNew, GroupShow, Home, Login, NavBar, PostList, PostNew, PostShow, and ProfileShow. there is also an AuthReducer, GroupsReducer, PostReducer, UserReducer, and a rootReducer.
+The site has routes to display each component:
+
+Login:
+   /login
+
+All Groups
+   /groups
+
+New Group:
+   /groups/new
+
+View Group:
+   /groups/:id
+
+All Posts
+   /posts
+
+New Post
+   posts/new
+
+View Post
+   posts/:id
+
+Profile
+   profile
 
 
 ## Setup
-To get to project dev environment up and running, one most change the ROOT_URL in ./src/actions/index.js and this.loginRedirect to run the front end on local servers. Additionally, one must change the service of the CAS within app/controllers/user_controller.js to a local environment. The exact lines of code are commented out for your ease of substitution. One must run `npm start` on the front end and `npm run dev` on the back end.
+To get to project dev environment up and running, one most change following:
+On the front end:
+1) In src/actions/index.js, `const ROOT_URL = 'http://gameplan-backend.herokuapp.com/api';` must be changed to `const ROOT_URL = 'http://localhost:9090/api';`.
+2) In src/components/login.js, `this.loginRedirect = 'http://gameplan.surge.sh/login';` must be changed to `this.loginRedirect = 'http://localhost:8080/login';`.
+
+On the back end:
+1) In app/controllers/user_controller.js, the service within CAS must be changed from `service: 'http://gameplan.surge.sh/login',` to `'http://localhost:8080/login',`
+The exact lines of code are commented out for your ease of substitution.
+
+One must `npm start` on the front end and `npm run dev` on the back end to run the local environment.
 
 
 ## Deployment
-We set up continuous integration through Travis CI and configured our github to automatically deploy changes to heroku. In order to deploy, one must simply push to a new branch on the repository and then initiate a pull request. 
+We set up continuous integration through Travis CI and configured our github to automatically deploy changes to heroku. In order to deploy, one must simply push to a new branch on the repository and then initiate a pull request.
 
 
 ## Authors
