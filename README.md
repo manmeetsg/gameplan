@@ -58,16 +58,16 @@ New Group:
 View Group:
    /groups/:id
 
-All Posts
+All Posts:
    /posts
 
-New Post
+New Post:
    posts/new
 
-View Post
+View Post:
    posts/:id
 
-Profile
+Profile:
    profile
 
 
